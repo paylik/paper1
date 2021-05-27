@@ -1,49 +1,33 @@
-import React from "react";
 import {
     addArticleActionCreator,
     updateNewArticleContentActionCreator,
     updateNewArticleTitleActionCreator
 } from "../../redux/article-reduser";
 import Articles from "./Articles";
-import StoreContext from "../../StoreContext";
+import {connect} from "react-redux";
 
-const ArticlesContainer = () => {
-    return (
-        <StoreContext.Consumer>
-            {
-                (store) => {
-                    let state = store.getState();
+const mapStateToProps = (state) => {
+    return {
+        articles: state.articleReducer.articles,
+        newArticleTitleText: state.articleReducer.newArticleTitleText,
+        newArticleContentText: state.articleReducer.newArticleContentText
+    }
+};
 
-                    let addArticle = () => {
-                        store.dispatch(addArticleActionCreator());
-                    }
-
-                    let onArticleTitleChange = (title) => {
-                        let action = updateNewArticleTitleActionCreator(title);
-                        store.dispatch(action);
-                    }
-
-                    let onArticleContentChange = (content) => {
-                        let action = updateNewArticleContentActionCreator(content);
-                        store.dispatch(action);
-                    }
-
-                    return (
-                        <Articles
-                            updateNewArticleTitle = { onArticleTitleChange }
-                            updateNewArticleContent = { onArticleContentChange }
-                            addArticle = { addArticle }
-                            articles = { state.articleReducer.articles }
-                            newArticleTitleText = { state.articleReducer.newArticleTitleText }
-                            newArticleContentText = { state.articleReducer.newArticleContentText }>
-
-                        </Articles>
-
-                    )
-                }
-            }
-        </StoreContext.Consumer>
-    )
+const mapDispatchToProps = (dispatch) => {
+    return {
+        updateNewArticleTitle: (title) => {
+            let action = updateNewArticleTitleActionCreator(title);
+            dispatch(action)
+        },
+        updateNewArticleContent: (content) => {
+            let action = updateNewArticleContentActionCreator(content);
+            dispatch(action);
+        },
+        addArticle: () => dispatch(addArticleActionCreator())
+    }
 }
+
+const ArticlesContainer = connect(mapStateToProps, mapDispatchToProps)(Articles);
 
 export default ArticlesContainer;
