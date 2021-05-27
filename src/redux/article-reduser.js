@@ -50,7 +50,7 @@ const articleReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_ARTICLE:
             let newArticle = {
-                id: initialState.articles.length,
+                id: initialState.articles.length + 1,
                 title: state.newArticleTitleText,
                 content: state.newArticleContentText
             };

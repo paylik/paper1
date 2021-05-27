@@ -2,10 +2,10 @@ import { combineReducers, createStore } from 'redux';
 import articleReducer from "./article-reduser";
 
 
-let redusers = combineReducers({
+let reducers = combineReducers({
     articleReducer
 });
 
-let store = createStore(redusers);
+let store = createStore(reducers);
 
 export default store;

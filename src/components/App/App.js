@@ -4,6 +4,7 @@ import Header from '../Header/Header';
 import Navbar from '../Navbar/Navbar';
 import { Route } from 'react-router-dom';
 import About from "../About/About";
+import ArticlesContainer from "../Articles/ArticlesContainer";
 
 function App() {
   return (
@@ -11,7 +12,7 @@ function App() {
      <Header />
      <Navbar/>
      <div className="content">
-         {/*<Route path='/articles' render={ () => <Article />} />*/}
+         <Route path='/articles' render={ () => <ArticlesContainer />} />
          {/*<Route path='/commercials' render={ () => <Commercials />} />*/}
          <Route path='/about' render={ () => <About />} />
      </div>
