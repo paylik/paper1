@@ -50,20 +50,26 @@ const articleReducer = (state = initialState, action) => {
     switch (action.type) {
         case ADD_ARTICLE:
             let newArticle = {
-                id: initialState.articles.length + 1,
+                id: state.articles.length + 1,
                 title: state.newArticleTitleText,
                 content: state.newArticleContentText
             };
-            state.articles.push(newArticle);
-            state.newArticleContentText = '';
-            state.newArticleTitleText = '';
-            return state;
+            return {
+                ...state,
+                articles: [...state.articles, newArticle],
+                newArticleContentText: '',
+                newArticleTitleText: ''
+            }
         case UPDATE_NEW_ARTICLE_TITLE:
-            state.newArticleTitleText = action.newTitle;
-            return state;
+            return {
+                ...state,
+                newArticleTitleText: action.newTitle
+            }
         case UPDATE_NEW_ARTICLE_CONTENT:
-            state.newArticleContentText = action.newContent;
-            return state;
+            return {
+                ...state,
+                newArticleContentText: action.newContent
+            }
         default:
             return state;
     }

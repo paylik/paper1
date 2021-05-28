@@ -1,3 +1,4 @@
+
 import {
     addArticleActionCreator,
     updateNewArticleContentActionCreator,
@@ -12,22 +13,24 @@ const mapStateToProps = (state) => {
         newArticleTitleText: state.articleReducer.newArticleTitleText,
         newArticleContentText: state.articleReducer.newArticleContentText
     }
-};
+}
 
 const mapDispatchToProps = (dispatch) => {
     return {
         updateNewArticleTitle: (title) => {
             let action = updateNewArticleTitleActionCreator(title);
-            dispatch(action)
+            dispatch(action);
         },
         updateNewArticleContent: (content) => {
             let action = updateNewArticleContentActionCreator(content);
             dispatch(action);
         },
-        addArticle: () => dispatch(addArticleActionCreator())
+        addArticle: () => {
+            dispatch(addArticleActionCreator())
+        }
     }
 }
 
-const ArticlesContainer = connect(mapStateToProps, mapDispatchToProps)(Articles);
+const ArticlesContainer = connect(mapStateToProps, mapDispatchToProps)(Articles)
 
 export default ArticlesContainer;
