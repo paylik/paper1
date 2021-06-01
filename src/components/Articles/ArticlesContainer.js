@@ -2,7 +2,8 @@
 import {
     addArticleActionCreator,
     updateNewArticleContentActionCreator,
-    updateNewArticleTitleActionCreator
+    updateNewArticleTitleActionCreator,
+    updateLikesCountAC
 } from "../../redux/article-reduser";
 import Articles from "./Articles";
 import {connect} from "react-redux";
@@ -27,10 +28,12 @@ const mapDispatchToProps = (dispatch) => {
         },
         addArticle: () => {
             dispatch(addArticleActionCreator())
+        },
+
+        updateLikesCount: (id, quantity) => {
+            dispatch(updateLikesCountAC(id, quantity))
         }
     }
 }
 
-const ArticlesContainer = connect(mapStateToProps, mapDispatchToProps)(Articles)
-
-export default ArticlesContainer;
+export default connect(mapStateToProps, mapDispatchToProps)(Articles)

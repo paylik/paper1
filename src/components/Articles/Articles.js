@@ -4,8 +4,16 @@ import Article from "./Article/Article";
 
 const Articles = (props) => {
 
+    let onUpdateLikesCount = (id, quantity) => {
+        props.updateLikesCount(id, quantity)
+    }
+
     let articlesElements =
-        props.articles.map( a => <Article key={a.id} title={a.title} content={a.content} id={a.id} />)
+        props.articles.map(a => <Article
+            key={a.id}
+            article={a}
+            onUpdateLikesCount={onUpdateLikesCount}
+        />)
 
     let newArticleTitle = React.createRef();
     let newArticleContent = React.createRef();
@@ -29,19 +37,19 @@ const Articles = (props) => {
             <h3>Articles</h3>
             <div>
                 <div>
-                    <textarea onChange={ onArticleTitleChange } ref={ newArticleTitle }
-                              value={props.newArticleTitleText} />
+                    <textarea onChange={onArticleTitleChange} ref={newArticleTitle}
+                              value={props.newArticleTitleText}/>
                 </div>
                 <div>
-                    <textarea onChange={ onArticleContentChange } ref={ newArticleContent }
-                              value={props.newArticleContentText} />
+                    <textarea onChange={onArticleContentChange} ref={newArticleContent}
+                              value={props.newArticleContentText}/>
                 </div>
                 <div>
-                    <button onClick={ onAddArticle }>Add article</button>
+                    <button onClick={onAddArticle}>Add article</button>
                 </div>
             </div>
             <div className={s.articles}>
-                { articlesElements }
+                {articlesElements}
             </div>
         </div>
 
