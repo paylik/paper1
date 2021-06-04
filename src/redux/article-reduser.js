@@ -96,14 +96,14 @@ const articleReducer = (state = initialState, action) => {
     }
 };
 
-export const addArticleActionCreator = () => ({type: ADD_ARTICLE});
-export const updateNewArticleTitleActionCreator = (text) => ({
+export const addArticle = () => ({type: ADD_ARTICLE});
+export const updateNewArticleTitle = (text) => ({
     type: UPDATE_NEW_ARTICLE_TITLE, newTitle: text
 });
-export const updateNewArticleContentActionCreator = (text) => ({
+export const updateNewArticleContent = (text) => ({
     type: UPDATE_NEW_ARTICLE_CONTENT, newContent: text
 });
-export const updateLikesCountAC = (id, quantity) => ({
+export const updateLikesCount = (id, quantity) => ({
     type: UPDATE_LIKES_COUNT, id, quantity
 })
 

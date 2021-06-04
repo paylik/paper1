@@ -1,9 +1,8 @@
-
 import {
-    addArticleActionCreator,
-    updateNewArticleContentActionCreator,
-    updateNewArticleTitleActionCreator,
-    updateLikesCountAC
+    addArticle,
+    updateNewArticleContent,
+    updateNewArticleTitle,
+    updateLikesCount
 } from "../../redux/article-reduser";
 import Articles from "./Articles";
 import {connect} from "react-redux";
@@ -16,24 +15,9 @@ const mapStateToProps = (state) => {
     }
 }
 
-const mapDispatchToProps = (dispatch) => {
-    return {
-        updateNewArticleTitle: (title) => {
-            let action = updateNewArticleTitleActionCreator(title);
-            dispatch(action);
-        },
-        updateNewArticleContent: (content) => {
-            let action = updateNewArticleContentActionCreator(content);
-            dispatch(action);
-        },
-        addArticle: () => {
-            dispatch(addArticleActionCreator())
-        },
-
-        updateLikesCount: (id, quantity) => {
-            dispatch(updateLikesCountAC(id, quantity))
-        }
-    }
-}
-
-export default connect(mapStateToProps, mapDispatchToProps)(Articles)
+export default connect(mapStateToProps, {
+    updateNewArticleTitle,
+    updateNewArticleContent,
+    addArticle,
+    updateLikesCount
+})(Articles)
