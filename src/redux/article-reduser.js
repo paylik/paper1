@@ -1,9 +1,11 @@
+
 const ADD_ARTICLE = 'ADD_ARTICLE';
 const UPDATE_NEW_ARTICLE_TITLE = 'UPDATE_NEW_ARTICLE_TITLE';
 const UPDATE_NEW_ARTICLE_CONTENT = 'UPDATE_NEW_ARTICLE_CONTENT';
 const UPDATE_LIKES_COUNT = 'UPDATE_LIKES_COUNT';
 
 let initialState = {
+
     articles: [
         {
             id: 1,
@@ -65,6 +67,7 @@ const articleReducer = (state = initialState, action) => {
                 likesCount: 0,
                 like: false
             };
+
             return {
                 ...state,
                 articles: [...state.articles, newArticle],
