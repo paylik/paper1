@@ -1,3 +1,7 @@
+.header {
+    grid-area: h;
+    text-align: center;
+}
 .header img {
     padding: 5px 30px;
 }

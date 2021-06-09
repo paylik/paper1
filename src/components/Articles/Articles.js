@@ -1,8 +1,13 @@
 import React from "react";
 import s from "./Articles.module.css"
 import Article from "./Article/Article";
+import AddForm from "../Forms/AddForm";
 
 const Articles = (props) => {
+
+    let addArticle = (values) => {
+        props.addArticle(values)
+    }
 
     let onUpdateLikesCount = (id, quantity) => {
         props.updateLikesCount(id, quantity)
@@ -15,39 +20,16 @@ const Articles = (props) => {
             onUpdateLikesCount={onUpdateLikesCount}
         />)
 
-    let newArticleTitle = React.createRef();
-    let newArticleContent = React.createRef();
-
-    let onArticleTitleChange = () => {
-        let title = newArticleTitle.current.value;
-        props.updateNewArticleTitle(title);
-    }
-
-    let onArticleContentChange = () => {
-        let title = newArticleContent.current.value;
-        props.updateNewArticleContent(title);
-    }
-
-    let onAddArticle = () => {
-        props.addArticle();
-    }
 
     return (
         <div className={s.articlesBlock}>
             <h3>Articles</h3>
-            <div>
-                <div>
-                    <textarea onChange={onArticleTitleChange} ref={newArticleTitle}
-                              value={props.newArticleTitleText}/>
-                </div>
-                <div>
-                    <textarea onChange={onArticleContentChange} ref={newArticleContent}
-                              value={props.newArticleContentText}/>
-                </div>
-                <div>
-                    <button onClick={onAddArticle}>Add article</button>
-                </div>
-            </div>
+            <AddForm onSubmit = { addArticle }
+                updateNewArticleTitle = {props.updateNewArticleTitle}
+                     updateNewArticleContent = {props.updateNewArticleContent}
+                     newArticleTitleText = { props.newArticleTitleText }
+                     newArticleContentText = {props.newArticleContentText}
+            />
             <div className={s.articles}>
                 {articlesElements}
             </div>
