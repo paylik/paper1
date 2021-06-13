@@ -1,7 +1,5 @@
 
 const ADD_ARTICLE = 'ADD_ARTICLE';
-const UPDATE_NEW_ARTICLE_TITLE = 'UPDATE_NEW_ARTICLE_TITLE';
-const UPDATE_NEW_ARTICLE_CONTENT = 'UPDATE_NEW_ARTICLE_CONTENT';
 const UPDATE_LIKES_COUNT = 'UPDATE_LIKES_COUNT';
 
 let initialState = {
@@ -51,9 +49,7 @@ let initialState = {
             likesCount: 8,
             like: false
         }
-    ],
-    newArticleTitleText: '',
-    newArticleContentText: ''
+    ]
 };
 
 const articleReducer = (state = initialState, action) => {
@@ -62,28 +58,17 @@ const articleReducer = (state = initialState, action) => {
         case ADD_ARTICLE:
             let newArticle = {
                 id: state.articles.length + 1,
-                title: state.newArticleTitleText,
-                content: state.newArticleContentText,
+                title: action.values.newArticleTitle,
+                content: action.values.newArticleContent,
                 likesCount: 0,
                 like: false
             };
 
             return {
                 ...state,
-                articles: [...state.articles, newArticle],
-                newArticleContentText: '',
-                newArticleTitleText: ''
+                articles: [...state.articles, newArticle]
             }
-        case UPDATE_NEW_ARTICLE_TITLE:
-            return {
-                ...state,
-                newArticleTitleText: action.newTitle
-            }
-        case UPDATE_NEW_ARTICLE_CONTENT:
-            return {
-                ...state,
-                newArticleContentText: action.newContent
-            }
+
         case UPDATE_LIKES_COUNT:
             return {
                 ...state,
@@ -99,13 +84,8 @@ const articleReducer = (state = initialState, action) => {
     }
 };
 
-export const addArticle = () => ({type: ADD_ARTICLE});
-export const updateNewArticleTitle = (text) => ({
-    type: UPDATE_NEW_ARTICLE_TITLE, newTitle: text
-});
-export const updateNewArticleContent = (text) => ({
-    type: UPDATE_NEW_ARTICLE_CONTENT, newContent: text
-});
+export const addArticle = (values) => ({type: ADD_ARTICLE, values});
+
 export const updateLikesCount = (id, quantity) => ({
     type: UPDATE_LIKES_COUNT, id, quantity
 })
