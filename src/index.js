@@ -24,7 +24,7 @@ firebase.analytics();
     ReactDOM.render(
         <React.StrictMode>
             <BrowserRouter>
-                <Provider store={store} firebase={firebase}>
+                <Provider store={store} >
                     <App/>
                 </Provider>
             </BrowserRouter>
