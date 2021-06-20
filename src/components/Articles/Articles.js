@@ -24,7 +24,6 @@ const Articles = (props) => {
     }, [])
 
     useEffect(() => {
-        console.log(articles)
         getArticles()
     }, [getArticles]);
 

@@ -10,7 +10,7 @@ const maxLength500 = maxLength(500);
 const Form = (props) => {
 
     return (
-        <form onSubmit={[props.handleSubmit, console.log("values")]}>
+        <form onSubmit={props.handleSubmit}>
             <div >
                 <Field
                     component={TextArea}
