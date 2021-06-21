@@ -8,51 +8,63 @@ import firebase from "firebase";
 const maxLength50 = maxLength(50);
 const maxLength100 = maxLength(100);
 
-const AddCommercial = (props) => {
+const AddCommercialForm = ({handleSubmit, reset, setAdd}) => {
 
-    const {handleSubmit, reset} = props
+        const addCommercial = (values) => {
 
-    const addCommercial = (values) => {
+            const ref = firebase.firestore().collection('commercials');
 
-        const ref = firebase.firestore().collection('articles');
+            const newCommercial = {
+                title: values.newCommercialTitle,
+                description: values.newCommercialDescription,
+                contacts: values.newCommercialContacts
+            }
 
-        console.log(values.newCommercialTitle);
-        reset();
-        props.setAdd(true)
-    };
+            ref.add(newCommercial)
+                .then((commercial) => {
+                    console.log("You add new commercial with ID: ", commercial.id);
+                })
+                .catch((error) => {
+                    console.log("Error adding commercial: ", error)
+                })
+            reset();
+            setAdd(true);
+        };
 
-    return (
+        return (
 
-        <form onSubmit={handleSubmit(addCommercial)}>
-            <div>
-                <Field
-                    component={TextArea}
-                    name="newCommercialTitle"
-                    placeholder="Title"
-                    validate={[requiredField, maxLength50]}
-                    className={`${s.addForm} ${s.title}`}
-                />
-                <Field
-                    component={TextArea}
-                    name="newCommercialContent"
-                    placeholder="Description"
-                    validate={[requiredField, maxLength100]}
-                    className={s.addForm}
-                    rows="5"
-                />
-                <Field
-                    component={TextArea}
-                    name="newCommercialContacts"
-                    placeholder="Contacts"
-                    validate={[requiredField, maxLength100]}
-                    className={s.addForm}
-                />
-            </div>
-            <div>
-                <button type="submit">Send commercial</button>
-            </div>
-        </form>
-    )
-};
+            <form onSubmit={handleSubmit(addCommercial)}>
+                <div>
+                    <Field
+                        component={TextArea}
+                        name="newCommercialTitle"
+                        placeholder="Title"
+                        validate={[requiredField, maxLength50]}
+                        className={`${s.addForm} ${s.title}`}
+                    />
+                    <Field
+                        component={TextArea}
+                        name="newCommercialDescription"
+                        placeholder="Description"
+                        validate={[requiredField, maxLength100]}
+                        className={s.addForm}
+                        rows="5"
+                    />
+                    <Field
+                        component={TextArea}
+                        name="newCommercialContacts"
+                        placeholder="Contacts"
+                        validate={[requiredField, maxLength100]}
+                        className={s.addForm}
+                    />
+                </div>
+                <div>
+                    <button type="submit">Send commercial</button>
+                    <button onClick={() => setAdd(true)}>Cancel</button>
+                </div>
+            </form>
+        )
+    }
+;
 
-export default reduxForm({form: "addCommercial"})(AddCommercial);
+export default reduxForm({form: "addCommercial"})(AddCommercialForm);
