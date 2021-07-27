@@ -10,8 +10,10 @@ const maxLength100 = maxLength(100);
 
 const ChangeCommercialForm = ({handleSubmit, commercial, setChange}) => {
 
+    const id = commercial.id
+
     const changeCommercial = (values) => {
-        const id = commercial.id;
+
         const ref = firebase.firestore().collection('commercials');
 
         const newCommercial = {
@@ -24,7 +26,7 @@ const ChangeCommercialForm = ({handleSubmit, commercial, setChange}) => {
 
         ref.doc(id).set(newCommercial)
             .then((commercial) => {
-                console.log("You change commercial with ID: ", commercial.id);
+                console.log("You change commercial with ID: ", id);
             })
             .catch((error) => {
                 console.log("Error adding commercial: ", error)
@@ -39,9 +41,8 @@ const ChangeCommercialForm = ({handleSubmit, commercial, setChange}) => {
                     <div>{commercial.title}</div>
                     <Field
                         component={TextArea}
-                        name={commercial.title}
+                        name="newCommercialTitle"
                         validate={[requiredField, maxLength50]}
-                        type="text"
                         className={`${s.addForm} ${s.title}`}
                     />
                     <Field
@@ -61,8 +62,8 @@ const ChangeCommercialForm = ({handleSubmit, commercial, setChange}) => {
                     />
                 </div>
                 <div>
-                    <button type="submit">Change commercial</button>
-                    <button onClick={() => setChange(false)}>Cancel</button>
+                    <button type="submit" className="btn btn-outline-success">Change commercial</button>
+                    <button className="btn btn-outline-danger" onClick={() => setChange(false)}>Cancel</button>
                 </div>
             </form>
         )

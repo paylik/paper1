@@ -18,18 +18,23 @@ const Commercial = ({commercial, handleSubmit}) => {
         })
     };
 
+    const initial = {
+        newCommercialTitle: commercial.title,
+        newCommercialDescription:commercial.description,
+        newCommercialContacts: commercial.contacts
+    }
     return (
         <div>
             {change ?
                 <div>
-                    <ChangeCommercialForm setChange={setChange} commercial={commercial}/>
+                    <ChangeCommercialForm setChange={setChange} commercial={commercial} initialValues={initial}/>
                 </div> :
                 <div>
                     <h4>{commercial.title}</h4>
                     <div>{commercial.description}</div>
                     <div>{commercial.contacts}</div>
-                    <button onClick={() => deleteCommercial()}>Delete</button>
-                    <button onClick={() => setChange(true)}>Change</button>
+                    <button className="btn btn-outline-danger" onClick={() => { if (window.confirm("Do you really want to delete the entry?")){deleteCommercial()}}} >Delete</button>
+                    <button className="btn btn-outline-success" onClick={() => setChange(true)}>Change</button>
                 </div>
             }
             <hr/>

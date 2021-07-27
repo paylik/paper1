@@ -35,7 +35,7 @@ const CommercialsList = () => {
         <div className={s.commercials}>
             <h3>Commercials</h3>
             {add ?
-                <button onClick={() => setAdd(false)}>Add commercial</button> :
+                <button className="btn btn-outline-secondary" onClick={() => setAdd(false)}>Add commercial</button> :
                 <AddCommercialForm setAdd={setAdd}/>
             }
             {loading ?

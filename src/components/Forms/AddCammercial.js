@@ -59,8 +59,8 @@ const AddCommercialForm = ({handleSubmit, reset, setAdd}) => {
                     />
                 </div>
                 <div>
-                    <button type="submit">Send commercial</button>
-                    <button onClick={() => setAdd(true)}>Cancel</button>
+                    <button className="btn btn-outline-success" type="submit">Send commercial</button>
+                    <button className="btn btn-outline-danger" onClick={() => setAdd(true)}>Cancel</button>
                 </div>
             </form>
         )

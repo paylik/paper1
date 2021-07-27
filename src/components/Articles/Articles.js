@@ -63,11 +63,13 @@ const Articles = (props) => {
         <div className={s.articlesBlock}>
             <h3>Articles</h3>
             {newArticle ?
-                <button onClick={() => setNewArticle(false)}> Add new article </button> :
+                <button className="btn btn-outline-success" onClick={() => setNewArticle(false)}> Add new article </button> :
                 <AddForm onSubmit={addArticle}
                          onUpdateLikesCount={props.onUpdateLikesCount}
+                         setNewArticle={setNewArticle}
                 />
             }
+            <hr/>
             {loading ?
                 <div>Loading...</div> :
                 <div className={s.articles}>

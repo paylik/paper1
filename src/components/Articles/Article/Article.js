@@ -9,11 +9,12 @@ const Article = (props) => {
                 <div>
                     <h4>Likes {props.article.likesCount}</h4>
                     {props.article.like ? (
-                        <button onClick={() => props.onUpdateLikesCount(props.article.id, -1)}>Dislike</button>
+                        <button className="btn btn-outline-danger"  onClick={() => props.onUpdateLikesCount(props.article.id, -1)}>Dislike</button>
                     ) : (
-                        <button onClick={() => props.onUpdateLikesCount(props.article.id, 1)}>Like</button>
+                        <button className="btn btn-outline-success"  onClick={() => props.onUpdateLikesCount(props.article.id, 1)}>Like</button>
                     )}
                 </div>
+                <hr/>
             </div>
         )
     }
